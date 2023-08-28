@@ -1,0 +1,308 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+/* PAGE CONTAINER */
+
+#container {
+    height: 100vh;
+    background-color: rgb(40, 40, 40);
+    display: grid;
+    grid-template: repeat(7, 1fr) / repeat(5, 1fr);
+}
+
+
+/* Header (Title of Page) */
+
+#header {
+    background-color: rgb(41, 45, 47);
+    grid-row: 1 / 2;
+    grid-column: 1 / -1;
+
+    font-weight: bold;
+    font-size: 64px;
+    padding-left: 20px;
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+
+}
+
+
+/* NAVIGATION BAR */
+
+#nav {
+    background-color: rgb(38, 41, 42);
+    grid-row: 2 / -1;
+    grid-column: 1 / 2;
+
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 20px;
+}
+
+#p-title {
+    font-weight: bold;
+    font-size: 32px;
+    text-align: center;
+}
+
+
+/* Console of Navigation */
+
+#nav > #console {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    gap: 10px;
+    position: relative;
+}
+
+#nav > #console * {
+    box-sizing: border-box;
+}
+
+#nav > #console > #input-container {
+    display: flex;
+}
+
+#input-container > #p-name-input {
+    background-color: rgb(41, 45, 47);
+    border: 1px rgb(61, 65, 67) solid;
+    border-radius: 14px 0px 0px 14px;
+    padding: 10px 10px;
+    font-size: 14px;
+    font-weight: 500;
+    flex-grow: 1;
+}
+
+#p-name-input:focus {
+    outline: none;
+}
+
+#input-container > #create-project-btn {
+    background-color: rgb(41, 45, 47);
+    border: 1px rgb(61, 65, 67) solid;
+    border-radius: 0px 14px 14px 0px;
+    padding: 10px 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#input-container > #create-project-btn:hover {
+    background-color: rgb(46, 50, 52);
+    color: rgb(180, 249, 249);
+    border-color: cyan;
+    cursor: pointer;
+}
+
+
+/* Projects of Navigation */
+
+#nav > #projects {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    gap: 10px;
+    height: 100%;
+
+    overflow-y: auto;
+}
+
+.project-btn-ctn {
+    display: flex;
+}
+
+.project-btn-ctn > .project-btn {
+    background-color: rgb(41, 45, 47);
+    border: 1px rgb(61, 65, 67) solid;
+    border-radius: 14px 0px 0px 14px;
+    padding: 10px 10px;
+    font-size: 14px;
+    text-align: center;
+    flex-grow: 1;
+    overflow-wrap: break-word;
+}
+
+.project-btn-ctn > .project-btn:hover {
+    background-color: rgb(46, 50, 52);
+    border-color: cyan;
+    cursor: pointer;
+}
+
+.project-btn-ctn > .delete-project-btn {
+    background-color: rgb(41, 45, 47);
+    border: 1px rgb(61, 65, 67) solid;
+    border-radius: 0px 14px 14px 0px;
+    padding: 10px 10px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.project-btn-ctn > .delete-project-btn:hover {
+    background-color: rgb(36, 40, 42);
+    color: crimson;
+    border-color: crimson;
+    
+    cursor: pointer;
+}
+
+/* PROJECT SCREEN */
+
+#screen {
+    background-color: rgb(34, 37, 38);
+    grid-row: 2 / -1;
+    grid-column: 2 / -1;
+}
+
+.tab {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    height: 100%;
+    gap: 20px;
+    align-items: center;
+}
+
+.add-todo-btn {
+    display: block;
+    background-color: rgb(41, 45, 47);
+    border: 1px rgb(61, 65, 67) solid;
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 10px;
+    width: 80%;
+    text-align: start;
+}
+
+.add-todo-btn:hover {
+    background-color: rgb(46, 50, 52);
+    cursor: pointer;
+    border-color: cyan;
+}
+
+.todo-form {
+    min-width: 80%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(46, 50, 52);
+}
+
+.add-todo-top-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-todo-bottom-row {
+    display: flex; 
+}
+
+.title-input, .description-input {
+    border: none;
+    background-color: rgb(41, 45, 47);
+    padding: 10px;
+    margin: 5px;
+}
+
+.title-input, .description-input:focus {
+    outline: none;
+}
+
+.description-input {
+    resize: none;
+}
+
+.date-input {
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(41, 45, 47);
+    border: none;
+}
+
+.date-input:focus {
+    outline: none;
+}
+
+.submit-btn {
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(41, 45, 47);
+    min-width: 100px;
+    border: 1px rgb(46, 50, 52) solid;
+    border-radius: 5px;
+}
+
+.submit-btn:hover {
+    background-color: rgb(46, 50, 52);
+    border-color: cyan;
+    cursor: pointer;
+}
+
+.cancel-form {
+    margin-left: auto;
+    margin-right: 5px;
+    font-size: 21px;
+    background-color: rgb(34, 37, 38);
+    border: none;
+    padding: 5px;
+    text-align: center;
+}
+
+.cancel-form:hover {
+    color: cyan;
+    cursor: pointer;
+}
+
+
+.inactive {
+    display: none;
+}
+
+.active {
+    display: flex;
+}
+
+
+/* Miscellaneous */
+
+/* ::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+} */
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px; /* you can shrink taken width */
+    display: none;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background:#555; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #444; 
+  }

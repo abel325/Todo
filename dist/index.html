@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./bundle.js" defer></script>
+    <title>Todo</title>
+</head>
+<body>
+    <div id="container">
+        <header id="header">Todo</header>
+        <nav id="nav">
+            <div id="p-title">Projects</div>
+            <div id="console">
+                <div id="input-container">
+                    <input type="text" id="p-name-input" name="p-name-input" placeholder="Create Project" autocomplete="off"> 
+                    <button id="create-project-btn" class="show">↪</button>
+                </div>
+            </div>
+            <div id="projects">
+                
+            </div>
+        </nav>
+        <div id="screen">
+            <div class="tab active">
+                <h1>Title Here</h1>
+                <button class="add-todo-btn">➕ Add Todo</button>
+                <form action="" class="todo-form">
+                    <div class="add-todo-top-box">
+                        <input type="text" name="title" placeholder="Enter title here" class="title-input">
+                        <textarea name="description" cols="30" rows="10" placeholder="Enter description here" class="description-input"></textarea>
+                    </div>
+                    <div class="add-todo-bottom-row">
+                        <input type="date" name="date" class="date-input">
+                        <button type="submit" class="submit-btn">Submit</button>
+                        <button class="cancel-form">✘</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

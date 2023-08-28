@@ -1,0 +1,4 @@
+1. Project Button is growing horizontaly when a word is wider than width
+
+2. Cant change project name
+
