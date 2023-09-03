@@ -14,8 +14,9 @@ const Project = function(name) {
         name = new_name;
     }
 
-    let addTodo = function(description) {
-        todos.push(Todo(description));
+    let addTodo = function(title, description, due_date) {
+        todos.push(Todo(title, description, due_date));
+        console.log('todo added'); // log
     }
 
     let removeTodo = function(todo_id) {

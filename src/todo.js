@@ -1,6 +1,6 @@
 import { uniqueId } from "./id_generator.js";
 
-const Todo = function(title, description, due_date) {
+const Todo = function(title, description = "", due_date = "") {
     
     let id = uniqueId();
 
@@ -31,7 +31,11 @@ const Todo = function(title, description, due_date) {
     return {
         id,
         getDescription,
-        setDescription
+        setDescription,
+        getTitle,
+        setTitle,
+        getDate,
+        setDate
     }
 }
 

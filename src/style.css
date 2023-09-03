@@ -177,7 +177,6 @@ html, body {
 }
 
 .add-todo-btn {
-    display: block;
     background-color: rgb(41, 45, 47);
     border: 1px rgb(61, 65, 67) solid;
     border-radius: 5px;
@@ -195,9 +194,9 @@ html, body {
 
 .todo-form {
     min-width: 80%;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
-    border: 1px solid rgb(46, 50, 52);
+    border: 1px solid rgb(56, 60, 62);
 }
 
 .add-todo-top-box {
@@ -261,7 +260,7 @@ html, body {
 }
 
 .cancel-form:hover {
-    color: cyan;
+    color: crimson;
     cursor: pointer;
 }
 
@@ -272,6 +271,14 @@ html, body {
 
 .active {
     display: flex;
+}
+
+.show {
+    display: flex;
+}
+
+.hide {
+    display: none;
 }
 
 

@@ -39,6 +39,15 @@ const Projects = (function() {
         return projects[projects.length - 1].id;
     }
 
+    const returnProjectByName = function(name) {
+        for (let project of projects) {
+            if (project.getName() === name) {
+                return project;
+                break;
+            }
+        }
+    }
+
     const exists = function(name) {
         for (let project of projects) {
             if (name === project.getName()) {
@@ -56,6 +65,7 @@ const Projects = (function() {
         removeProjectByName,
         getLastElementId,
         printProjectsByName,
+        returnProjectByName,
         exists,
     }
 })();
