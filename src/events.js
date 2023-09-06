@@ -138,9 +138,9 @@ function createProjectTab(name) {
         console.log(`Project name is: ${name}`);
         console.log(`the title is: ${title_input.value}`);
         console.log(`description is: ${description_input.value}`);
-        console.log(date_input.value);
+        console.log(`date is: ${date_input.value}`);
 
-        todo_form.reset();
+        // todo_form.reset();
 
         todo_form.classList.remove('show');
         todo_form.classList.add('hide');
@@ -150,6 +150,8 @@ function createProjectTab(name) {
 
 
         createTodo(name, title_input.value, description_input.value, date_input.value);
+
+        todo_form.reset();
     })
 
     cancel_btn.addEventListener('click', () => {
@@ -184,13 +186,158 @@ function openProject(name) {
     tab.classList.add('active');
 }
 
-function createTodoButton(title, description, date) {
+function createTodoButton(project_name) {
+    const Project = Projects.returnProjectByName(project_name);
+
+    const Todo = Project.getLastTodo();
+
+    const Tab = document.getElementById(`${Project.getName()}`);
+    const todo_btn = document.createElement('div');
+    const top_todo_ctn = document.createElement('div');
+    const todo_title = document.createElement('div');
+    const todo_date = document.createElement('div');
+    const todo_modify_btn = document.createElement('button');
+    const todo_remove_btn = document.createElement('button');
+    const bottom_todo_ctn = document.createElement('div');
+    const dsc_title = document.createElement('h5');
+    const todo_description = document.createElement('div');
+    
+    setAttributes(todo_btn, {class: 'todo', id: Todo.getId()});
+    setAttributes(top_todo_ctn, {class: 'top-todo-ctn'});
+    setAttributes(todo_title, {class: 'todo-title'});
+    setAttributes(todo_date, {class: 'todo-date'});
+    setAttributes(todo_modify_btn, {class: 'todo-modify'});
+    setAttributes(todo_remove_btn, {class: 'todo-remove'});
+    setAttributes(bottom_todo_ctn, {class: 'bottom-todo-ctn'});
+    setAttributes(dsc_title, {class: 'dsc-title'});
+    setAttributes(todo_description, {class: 'todo-description'});
+
+    todo_title.innerText = Todo.getTitle();
+    todo_date.innerText = Todo.getDate();
+    todo_modify_btn.innerText = '✒️';
+    todo_remove_btn.innerText = '✘';
+    dsc_title.innerText = 'Description:';
+    todo_description.innerText = Todo.getDescription();
+
+    top_todo_ctn.appendChild(todo_title);
+    top_todo_ctn.appendChild(todo_date);
+    top_todo_ctn.appendChild(todo_modify_btn);
+    top_todo_ctn.appendChild(todo_remove_btn);
+    bottom_todo_ctn.appendChild(dsc_title);
+    bottom_todo_ctn.appendChild(todo_description);
+    todo_btn.appendChild(top_todo_ctn);
+    Tab.appendChild(todo_btn);
+
+    // Modify form elements
+    const title_input = document.createElement('input');
+    const description_input = document.createElement('textarea');
+    const date_input = document.createElement('input');
+    const submit_btn = document.createElement('button');
+    const cancel_btn = document.createElement('button');
+
+    setAttributes(title_input, {class: 'mod-title-input'});
+    setAttributes(description_input, {class: 'mod-description-input', cols: '30', rows: '10'});
+    setAttributes(date_input, {class: 'mod-date-input', type: 'date'});
+    setAttributes(submit_btn, {class: 'mod-submit-btn'});
+    setAttributes(cancel_btn, {class: 'mod-cancel-btn'});
+
+    submit_btn.innerText = 'Submit';
+    cancel_btn.innerText = '✘';
+    title_input.value = Todo.getTitle();
+    description_input.value = Todo.getDescription();
+    date_input.value = Todo.getDate();
+
+
+    todo_btn.addEventListener('click', () => {
+
+        console.log('Clicked Todo'); // log
+
+        if (todo_btn.classList.contains('expanded')) {
+            todo_btn.removeChild(bottom_todo_ctn);
+            todo_btn.classList.remove('expanded');
+        } else {
+            todo_btn.appendChild(bottom_todo_ctn);
+            todo_btn.classList.add('expanded');
+        }
+    })
+
+    todo_modify_btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+
+        todo_title.replaceWith(title_input);
+        todo_description.replaceWith(description_input);
+        todo_date.replaceWith(date_input);
+        todo_modify_btn.replaceWith(submit_btn);
+        todo_remove_btn.replaceWith(cancel_btn);
+    })
+
+    todo_remove_btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const response = confirm('Are you sure you wanna do that?');
+        if (response === true) {
+            Project.removeTodo(Todo.getId());
+            Tab.removeChild(todo_btn);
+        }
+    })
+
+    todo_date.addEventListener('click', (e) => e.stopPropagation());
+    todo_description.addEventListener('click', (e) => e.stopPropagation());
+
+
+    title_input.addEventListener('click', (e) => {
+        e.stopPropagation();
+    })
+
+    description_input.addEventListener('click', (e) => {
+        e.stopPropagation();
+    })
+
+    date_input.addEventListener('click', (e) => {
+        e.stopPropagation();
+    })
+
+    submit_btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        Todo.setTitle(title_input.value);
+        Todo.setDescription(description_input.value);
+        Todo.setDate(date_input.value);
+
+        todo_title.innerText = title_input.value;
+        todo_description.innerText = description_input.value;
+        todo_date.innerText = date_input.value;
+
+        title_input.replaceWith(todo_title);
+        description_input.replaceWith(todo_description);
+        date_input.replaceWith(todo_date);
+        submit_btn.replaceWith(todo_modify_btn);
+        cancel_btn.replaceWith(todo_remove_btn);
+    })
+
+    cancel_btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        title_input.replaceWith(todo_title);
+        description_input.replaceWith(todo_description);
+        date_input.replaceWith(todo_date);
+        submit_btn.replaceWith(todo_modify_btn);
+        cancel_btn.replaceWith(todo_remove_btn);
+    })
+
+    
 
 }
+
+function createTodoForm(todo_id) {
+
+}
+
 
 function createTodo(project_name, title, description, date) {
     const Project = Projects.returnProjectByName(project_name);
     Project.addTodo(title, description, date);
+
+    createTodoButton(project_name);
 }
 
 
@@ -199,3 +346,10 @@ function setAttributes(element, attributes) {
       element.setAttribute(attr, attributes[attr]);
     });
 }  
+
+
+export {
+    createProject,
+    createTodo,
+    openProject
+}

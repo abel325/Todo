@@ -5,6 +5,10 @@
     color: white;
 }
 
+textarea:focus, input:focus {
+    outline: none;
+}
+
 html, body {
     height: 100%;
     overflow: hidden;
@@ -193,7 +197,7 @@ html, body {
 }
 
 .todo-form {
-    min-width: 80%;
+    width: 80%;
     /* display: flex; */
     flex-direction: column;
     border: 1px solid rgb(56, 60, 62);
@@ -265,21 +269,159 @@ html, body {
 }
 
 
-.inactive {
+
+
+.todo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: rgb(41, 45, 47);
+    border: 1px rgb(61, 65, 67) solid;
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 10px;
+    width: 80%;
+    text-align: start;
+}
+
+.top-todo-ctn {
+    width: 100%;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    gap: 10px;
+}
+
+.bottom-todo-ctn {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+}
+
+.todo-date {
+    margin-right: 10px;
+}
+
+.todo-title {
+    flex-grow: 4;
+}
+
+.todo-modify {
+    background-color: transparent;
+    border: none;
+}
+
+.todo-remove {
+    background-color: transparent;
+    border: none;
+}
+
+
+.mod-title-input {
+    /* width: fit-content; */
+    flex-grow: 4;
+    background-color: transparent;
+    border: 1px solid rgb(61, 65, 67);
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 100%;
+}
+
+.mod-description-input {
+    border: 1px solid rgb(61, 65, 67);
+    /* background-color: rgb(41, 45, 47); */
+    background-color: transparent;
+    resize: none;
+    font-size: 15px;
+    padding: 5px;
+
+    width: 100%;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;  
+    
+}
+
+.mod-date-input {
+    background-color: rgb(34, 37, 38);
+    padding: 5px;
+    border: none;
+    font-size: 15px;
+    /* width: 12%; */
+}
+
+.mod-submit-btn {
+    background-color: rgb(34, 37, 38);
+    padding: 5px;
+    /* width: 10%; */
+    border: 1px rgb(46, 50, 52) solid;
+    border-radius: 5px;
+}
+
+.mod-cancel-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 21px;
+    border: none;
+    padding: 5px;
+    text-align: center;
+    /* width: 3%; */
+}
+
+.mod-submit-btn:hover {
+    cursor: pointer;
+    border-color: cyan;
+}
+
+.mod-cancel-btn:hover {
+    cursor: pointer;
+    color: cyan;
+}
+
+
+.todo:hover {
+    background-color: rgb(46, 50, 52);
+    cursor: pointer;
+    border-color: purple;
+}
+
+.todo-modify:hover {
+    cursor: pointer;
+}
+
+.todo-remove:hover {
+    cursor: pointer;
+    color: crimson;
+}
+
+
+
+
+.inactive, .hide {
     display: none;
 }
 
-.active {
+.active, .show {
     display: flex;
 }
 
-.show {
-    display: flex;
+
+.expanded {
+
 }
 
-.hide {
-    display: none;
+.shrinked {
+
 }
+
+
+
 
 
 /* Miscellaneous */
@@ -291,6 +433,7 @@ html, body {
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
 } */
+
 
 
 /* width */

@@ -27,6 +27,18 @@ const Project = function(name) {
             }
         }
     }
+
+    let getLastTodo = function() {
+        return todos[todos.length - 1];
+    }
+
+    let getTodoById = function(id) {
+        for (let todo in todos) {
+            if (id === todo.getId()) {
+                return todo;
+            }
+        }
+    }
     
     return {
         id,
@@ -34,7 +46,9 @@ const Project = function(name) {
         getName,
         setName,
         addTodo,
-        removeTodo
+        removeTodo,
+        getLastTodo,
+        getTodoById
     }
 }
 

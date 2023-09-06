@@ -21,15 +21,19 @@ const Todo = function(title, description = "", due_date = "") {
     }
 
     const getDate = function() {
-        return date;
+        return due_date;
     }
 
     const setDate = function(date) {
-        
+        due_date = date;
+    }
+
+    const getId = function() {
+        return id;
     }
 
     return {
-        id,
+        getId,
         getDescription,
         setDescription,
         getTitle,
