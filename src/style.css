@@ -3,7 +3,9 @@
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
+    font-size: 100%;    
 }
+
 
 textarea:focus, input:focus {
     outline: none;
@@ -30,14 +32,18 @@ html, body {
     background-color: rgb(41, 45, 47);
     grid-row: 1 / 2;
     grid-column: 1 / -1;
+    height: 100%;
 
     font-weight: bold;
     font-size: 64px;
     padding-left: 20px;
+    padding-right: 20px;
 
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
     align-items: center;
+
+    
 
 
 }
@@ -56,9 +62,18 @@ html, body {
     padding: 20px;
 }
 
+#nav-open-close {
+    display: none;
+    width: 100px;
+}
+
+#nav-open-close:hover {
+    cursor: pointer;
+}
+
 #p-title {
     font-weight: bold;
-    font-size: 32px;
+    font-size: 200%;
     text-align: center;
 }
 
@@ -86,7 +101,7 @@ html, body {
     border: 1px rgb(61, 65, 67) solid;
     border-radius: 14px 0px 0px 14px;
     padding: 10px 10px;
-    font-size: 14px;
+    font-size: 90%;
     font-weight: 500;
     flex-grow: 1;
 }
@@ -100,7 +115,7 @@ html, body {
     border: 1px rgb(61, 65, 67) solid;
     border-radius: 0px 14px 14px 0px;
     padding: 10px 10px;
-    font-size: 14px;
+    font-size: 90%;
     font-weight: 500;
 }
 
@@ -112,7 +127,7 @@ html, body {
 }
 
 
-/* Projects of Navigation */
+/* Nav Projects */
 
 #nav > #projects {
     display: flex;
@@ -129,13 +144,14 @@ html, body {
 }
 
 .project-btn-ctn > .project-btn {
+    width: 70%;
     background-color: rgb(41, 45, 47);
     border: 1px rgb(61, 65, 67) solid;
     border-radius: 14px 0px 0px 14px;
     padding: 10px 10px;
-    font-size: 14px;
+    font-size: 90%;
     text-align: center;
-    flex-grow: 1;
+    flex-grow: 3;
     overflow-wrap: break-word;
 }
 
@@ -145,12 +161,25 @@ html, body {
     cursor: pointer;
 }
 
+.project-btn-ctn > .mod-project-name-btn {
+    background-color: rgb(41, 45, 47);
+    text-align: center;
+    padding: 10px;
+    border: 1px rgb(61, 65, 67) solid;
+    font-size: 80%;
+}
+
+.project-btn-ctn > .mod-project-name-btn:hover {
+    border: 1px cyan solid;
+    cursor: pointer;
+}
+
 .project-btn-ctn > .delete-project-btn {
     background-color: rgb(41, 45, 47);
     border: 1px rgb(61, 65, 67) solid;
     border-radius: 0px 14px 14px 0px;
     padding: 10px 10px;
-    font-size: 14px;
+    font-size: 90%;
     font-weight: 500;
     text-align: center;
 }
@@ -159,6 +188,50 @@ html, body {
     background-color: rgb(36, 40, 42);
     color: crimson;
     border-color: crimson;
+    
+    cursor: pointer;
+}
+
+.mod-project-name-input {
+    width: 70%;
+    background-color: rgb(41, 45, 47);
+    border: 1px rgb(61, 65, 67) solid;
+    border-radius: 14px 0px 0px 14px;
+    padding: 10px 10px;
+    font-size: 90%;
+    text-align: center;
+    flex-grow: 1;
+    overflow-wrap: break-word;
+}
+
+.mod-project-name-sub-btn {
+    background-color: rgb(41, 45, 47);
+    text-align: center;
+    padding: 10px;
+    font-size: 90%;
+    border: 1px rgb(61, 65, 67) solid;
+}
+
+.mod-project-name-sub-btn:hover {
+    background-color: rgb(36, 40, 42);
+    border: 1px cyan solid;
+    cursor: pointer;
+}
+
+.mod-project-name-cancel-btn {
+    background-color: rgb(41, 45, 47);
+    border: 1px rgb(61, 65, 67) solid;
+    border-radius: 0px 14px 14px 0px;
+    padding: 10px 10px;
+    font-size: 90%;
+    font-weight: 500;
+    text-align: center;
+}
+
+.mod-project-name-cancel-btn:hover {
+    background-color: rgb(36, 40, 42);
+    color: cyan;
+    border-color: cyan;
     
     cursor: pointer;
 }
@@ -184,7 +257,7 @@ html, body {
     background-color: rgb(41, 45, 47);
     border: 1px rgb(61, 65, 67) solid;
     border-radius: 5px;
-    font-size: 15px;
+    font-size: 100%;
     padding: 10px;
     width: 80%;
     text-align: start;
@@ -256,7 +329,7 @@ html, body {
 .cancel-form {
     margin-left: auto;
     margin-right: 5px;
-    font-size: 21px;
+    font-size: 135%;
     background-color: rgb(34, 37, 38);
     border: none;
     padding: 5px;
@@ -269,8 +342,6 @@ html, body {
 }
 
 
-
-
 .todo {
     display: flex;
     flex-direction: column;
@@ -280,7 +351,7 @@ html, body {
     background-color: rgb(41, 45, 47);
     border: 1px rgb(61, 65, 67) solid;
     border-radius: 5px;
-    font-size: 15px;
+    /* font-size: 15px; */
     padding: 10px;
     width: 80%;
     text-align: start;
@@ -289,10 +360,24 @@ html, body {
 .top-todo-ctn {
     width: 100%;
     display: flex;
-    flex-direction: column; 
+    /* flex-direction: column;  */
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    font-size: 100%;
+}
+
+.top-todo-left-ctn {
+    display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 15px;
+    gap: 10px;
+}
+
+.top-todo-right-ctn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 10px;
 }
 
@@ -304,12 +389,20 @@ html, body {
     gap: 10px;
 }
 
+.todo-checkbox:hover {
+    cursor: pointer;
+}
+
 .todo-date {
     margin-right: 10px;
+    width: max-content;
 }
 
 .todo-title {
     flex-grow: 4;
+    /* width: 70%; */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .todo-modify {
@@ -338,7 +431,7 @@ html, body {
     /* background-color: rgb(41, 45, 47); */
     background-color: transparent;
     resize: none;
-    font-size: 15px;
+    font-size: 100%;
     padding: 5px;
 
     width: 100%;
@@ -352,7 +445,7 @@ html, body {
     background-color: rgb(34, 37, 38);
     padding: 5px;
     border: none;
-    font-size: 15px;
+    font-size: 100%;
     /* width: 12%; */
 }
 
@@ -367,7 +460,7 @@ html, body {
 .mod-cancel-btn {
     background-color: transparent;
     border: none;
-    font-size: 21px;
+    font-size: 135%;
     border: none;
     padding: 5px;
     text-align: center;
@@ -411,19 +504,6 @@ html, body {
     display: flex;
 }
 
-
-.expanded {
-
-}
-
-.shrinked {
-
-}
-
-
-
-
-
 /* Miscellaneous */
 
 /* ::-webkit-scrollbar {
@@ -456,3 +536,40 @@ html, body {
   ::-webkit-scrollbar-thumb:hover {
     background: #444; 
   }
+
+
+
+#border-purple {
+    border: 1px solid purple;
+}
+
+
+@media only screen and (max-width: 910px) {
+    #nav {
+        display: none;
+        position: absolute;
+        /* height: 79%; */
+        top: 15%;  
+        left: 2.5%;    
+        right: 2.5%;    
+        bottom: 1%;   
+    }
+
+    #nav-open-close {
+        display: block;
+    }
+
+    #screen {
+        grid-row: 2 / -1;
+        grid-column: 1 / -1;
+    }
+
+    
+}
+
+
+@media only screen and (max-width: 665px) {
+    .top-todo-ctn {
+        flex-direction: column;
+    }
+}
