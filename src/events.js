@@ -7,6 +7,8 @@ import { Project } from './project.js';
     const project_name_input = document.querySelector('#p-name-input');
     const menu_toggle_btn = document.querySelector('#nav-open-close');
     const nav = document.querySelector('#nav');
+    const today_btn = document.getElementById('today');
+    const this_week_btn = document.getElementById('this-week');
 
     project_name_input.addEventListener('keydown', function(ev) {
         if (ev.key === 'Enter') {
@@ -31,10 +33,18 @@ import { Project } from './project.js';
             console.log(nav.style.display);
             nav.style.display = '';
         }
-    })
+    });
 
 
 })();
+
+function createInitialProjects(name1, name2) {
+    Projects.addProject(name1);
+    createProjectTab(name1);
+
+    Projects.addProject(name2);
+    createProjectTab(name2);
+}
 
 function createProject(input) {
     Projects.addProject(input);
@@ -448,5 +458,6 @@ function setAttributes(element, attributes) {
 export {
     createProject,
     createTodo,
-    openProject
+    openProject,
+    createInitialProjects
 }

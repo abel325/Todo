@@ -1,6 +1,8 @@
 import './style.css'
 import * as Events from './events.js'
 
+Events.createInitialProjects('today', 'this-week');
+
 
 Events.createProject('Jack Sparrow');
 Events.createTodo('Jack Sparrow', 'Test Todo and some more text to test some things', `Lorem Ipsum is simply dummy text of the printing and typesetting industry. 

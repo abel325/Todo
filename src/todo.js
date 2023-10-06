@@ -2,7 +2,7 @@ import { uniqueId } from "./id_generator.js";
 
 const Todo = function(title, description = "", due_date = "") {
     
-    let id = uniqueId();
+    let id = uniqueId();    
 
     const getTitle = function() {
         return title;
