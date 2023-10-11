@@ -1,14 +1,23 @@
 import './style.css'
 import * as Events from './events.js'
+import * as Storage from './storage.js'
 
-Events.createInitialProjects('today', 'this-week');
+function load() {
+    let StorageTable = Storage.getTable();
+    Storage.clear();
+
+    for (let ProjectName of Object.keys(StorageTable)) {
+        let Project = StorageTable[ProjectName];
+        Events.createProject(ProjectName);
+
+        for (let TodoName in Project) {
+            let Todo = Project[TodoName];
+            Events.createTodo(ProjectName, Todo['title'], Todo['description'], Todo['due_date']);
+        }
+    }
+}
 
 
-Events.createProject('Jack Sparrow');
-Events.createTodo('Jack Sparrow', 'Test Todo and some more text to test some things', `Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
-It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
-and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`, '2023-10-05');
-Events.openProject('Jack Sparrow');
+(function main() {
+    load();
+})();

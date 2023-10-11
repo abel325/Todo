@@ -1,9 +1,9 @@
 import {Todo} from "./todo.js"
-import { uniqueId } from "./id_generator.js";
+import * as Storage from './storage.js'
 
 const Project = function(name) {
 
-    let id = uniqueId();
+    let id = name;
     let todos = [];
 
     let getName = function() {
@@ -15,14 +15,31 @@ const Project = function(name) {
     }
 
     let addTodo = function(title, description, due_date) {
-        todos.push(Todo(title, description, due_date));
-        console.log('todo added'); // log
+        let TodoOBJ = Todo(title, description, due_date);
+        todos.push(TodoOBJ);
+        Storage.addTodo(id, TodoOBJ.getId(), TodoOBJ.getTable());
+        console.log(`Todo ADDED in ${name}`); // log
     }
 
     let removeTodo = function(todo_id) {
         for (let i = 0; i < todos.length; i++) {
-            if (todos[i].id === todo_id) {
+            if (todos[i].getId() === todo_id) {
                 todos.splice(i, 1);
+                Storage.removeTodo(id, todo_id);
+                console.log(`Todo REMOVED from ${name}`);
+                break;
+            }
+        }
+    }
+
+    let modifyTodo = function(todo_id, new_title, new_description, new_due_date) {
+        for (let i = 0; i < todos.length; i++) {
+            if (todos[i].getId() === todo_id) {
+                todos[i].setTitle(new_title);
+                todos[i].setDescription(new_description);
+                todos[i].setDate(new_due_date);
+                Storage.modifyTodo(id, todos[i].getId(), todos[i].getTable());
+                console.log('Todo MODIFIED in ${name}');
                 break;
             }
         }
@@ -47,6 +64,7 @@ const Project = function(name) {
         setName,
         addTodo,
         removeTodo,
+        modifyTodo,
         getLastTodo,
         getTodoById
     }

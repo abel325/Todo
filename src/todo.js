@@ -32,6 +32,14 @@ const Todo = function(title, description = "", due_date = "") {
         return id;
     }
 
+    const getTable = function() {
+        return {
+            title: title,
+            description: description,
+            due_date: due_date
+        }
+    }
+
     return {
         getId,
         getDescription,
@@ -39,7 +47,8 @@ const Todo = function(title, description = "", due_date = "") {
         getTitle,
         setTitle,
         getDate,
-        setDate
+        setDate,
+        getTable
     }
 }
 

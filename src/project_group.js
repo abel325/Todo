@@ -1,4 +1,5 @@
 import {Project} from './project.js'
+import * as Storage from './storage.js'
 
 const Projects = (function() {
     let projects = [];
@@ -6,24 +7,27 @@ const Projects = (function() {
     const addProject = function(name) {
         const new_project = Project(name);
         projects.push(new_project);
-        console.log(`${new_project.getName()} has been created!`); // log 
+        Storage.addProject(name);
+        console.log(`New project ( ${new_project.getName()} ) has been CREATED!`); // log 
     }
 
-    const removeProject = function(project_id) {
+    const removeProject = function(project_name) {
         for (let i = 0; i < projects.length; i++) {
-            if (projects[i].id === project_id) {
-                console.log(`${projects[i].getName()} has been REMOVED!`); // log
+            if (projects[i].getName() === project_name) {
+                console.log(`Project ( ${projects[i].getName()} ) has been REMOVED!`); // log
                 projects.splice(i, 1);
+                Storage.removeProject(project_name);
                 break;
             }
         }
     }
 
-    const removeProjectByName = function(project_name) {
+    const renameProject = function(project_name, new_name) {
         for (let i = 0; i < projects.length; i++) {
-            if (projects[i].getName() === project_name) {
-                console.log(`${projects[i].getName()} has been REMOVED!`); // log
-                projects.splice(i, 1);
+            if (projects[i].getName() === project_name && project_name !== new_name) {
+                console.log(`Project "${project_name}" has been RENAMED into "${new_name}"!`); // log
+                projects[i].setName(new_name);
+                Storage.renameProject(project_name, new_name);
                 break;
             }
         }
@@ -62,11 +66,11 @@ const Projects = (function() {
     return {
         addProject,
         removeProject,
-        removeProjectByName,
+        renameProject,
         getLastElementId,
         printProjectsByName,
         returnProjectByName,
-        exists,
+        exists
     }
 })();
 

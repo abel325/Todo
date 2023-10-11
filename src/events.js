@@ -1,14 +1,10 @@
-import { add, format, set } from 'date-fns';
 import {Projects} from './project_group.js'
-import { Project } from './project.js';
 
 (function() {
     const create_project_btn = document.querySelector('#create-project-btn');
     const project_name_input = document.querySelector('#p-name-input');
     const menu_toggle_btn = document.querySelector('#nav-open-close');
     const nav = document.querySelector('#nav');
-    const today_btn = document.getElementById('today');
-    const this_week_btn = document.getElementById('this-week');
 
     project_name_input.addEventListener('keydown', function(ev) {
         if (ev.key === 'Enter') {
@@ -27,10 +23,8 @@ import { Project } from './project.js';
 
     menu_toggle_btn.addEventListener('click', function() {
         if (nav.style.display === '') {
-            console.log(nav.style.display);
             nav.style.display = 'flex';
         } else if (nav.style.display == 'flex') {
-            console.log(nav.style.display);
             nav.style.display = '';
         }
     });
@@ -38,22 +32,17 @@ import { Project } from './project.js';
 
 })();
 
-function createInitialProjects(name1, name2) {
-    Projects.addProject(name1);
-    createProjectTab(name1);
-
-    Projects.addProject(name2);
-    createProjectTab(name2);
-}
 
 function createProject(input) {
-    Projects.addProject(input);
-    createProjectBtn(input);
-    createProjectTab(input);
+    if (!Projects.exists(input)) {
+        Projects.addProject(input);
+        createProjectBtn(input);
+        createProjectTab(input);
+    }
 }
 
 function deleteProject(name) {
-    Projects.removeProjectByName(name);
+    Projects.removeProject(name);
     deleteProjectBtn(name);
     deleteProjectTab(name);
 }
@@ -133,13 +122,6 @@ function createProjectBtn(name) {
     })
 
     project_btn.addEventListener('click', () => {
-        // const project_btns = document.querySelectorAll('project-btn');
-        // for (let btn of project_btns) {
-        //     if (btn.getAttribute('id') === 'border-purple') {
-        //         btn.removeAttribute('id');
-        //     }
-        // }
-        // project_btn.setAttribute('id', 'border-purple'); // not working for now, have to fix later maybe
         openProject(name);
     });
 
@@ -156,7 +138,7 @@ function changeProjectName(current_name, new_name) {
     const ProjectTab = document.getElementById(current_name);
     const tab_title = ProjectTab.querySelector('.tab-title');
 
-    Project.setName(new_name);
+    Projects.renameProject(current_name, new_name);
     ProjectTab.setAttribute('id', new_name);
     tab_title.innerText = new_name;
 }
@@ -238,17 +220,11 @@ function createProjectTab(name) {
     todo_form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        console.log(`Project name is: ${name}`);
-        console.log(`the title is: ${title_input.value}`);
-        console.log(`description is: ${description_input.value}`);
-        console.log(`date is: ${date_input.value}`);
-
         todo_form.classList.remove('show');
         todo_form.classList.add('hide');
 
         add_todo_btn.classList.remove('hide');
         add_todo_btn.classList.add('show');
-
 
         createTodo(name, title_input.value, description_input.value, date_input.value);
 
@@ -333,9 +309,6 @@ function createTodoButton(project_name) {
     top_todo_right_ctn.appendChild(todo_remove_btn);
     top_todo_ctn.appendChild(top_todo_left_ctn);
     top_todo_ctn.appendChild(top_todo_right_ctn);
-    // top_todo_ctn.appendChild(todo_date);
-    // top_todo_ctn.appendChild(todo_modify_btn);
-    // top_todo_ctn.appendChild(todo_remove_btn);
     bottom_todo_ctn.appendChild(dsc_title);
     bottom_todo_ctn.appendChild(todo_description);
     todo_btn.appendChild(top_todo_ctn);
@@ -362,7 +335,7 @@ function createTodoButton(project_name) {
 
     todo_btn.addEventListener('click', () => {
 
-        console.log('Clicked Todo'); // log
+        console.log('Clicked Todo!'); // log
 
         if (todo_btn.classList.contains('expanded')) {
             todo_btn.removeChild(bottom_todo_ctn);
@@ -419,9 +392,7 @@ function createTodoButton(project_name) {
     submit_btn.addEventListener('click', (e) => {
         e.stopPropagation();
 
-        Todo.setTitle(title_input.value);
-        Todo.setDescription(description_input.value);
-        Todo.setDate(date_input.value);
+        Project.modifyTodo(Todo.getId(), title_input.value, description_input.value, date_input.value);
 
         todo_title.innerText = title_input.value;
         todo_description.innerText = description_input.value;
@@ -458,6 +429,5 @@ function setAttributes(element, attributes) {
 export {
     createProject,
     createTodo,
-    openProject,
-    createInitialProjects
+    openProject
 }
