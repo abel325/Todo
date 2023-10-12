@@ -1,16 +1,10 @@
 import {Projects} from './project_group.js'
-import Icon from './menu_icon.png'
 
 (function() {
-    const header = document.querySelector('#header');
     const create_project_btn = document.querySelector('#create-project-btn');
     const project_name_input = document.querySelector('#p-name-input');
+    const menu_toggle_btn = document.querySelector('#nav-open-close');
     const nav = document.querySelector('#nav');
-
-    const menu_icon = new Image();
-    menu_icon.setAttribute('id', 'nav-open-close');
-    menu_icon.src = Icon;
-    header.appendChild(menu_icon);
 
     project_name_input.addEventListener('keydown', function(ev) {
         if (ev.key === 'Enter') {
@@ -27,7 +21,7 @@ import Icon from './menu_icon.png'
         }
     });
 
-    menu_icon.addEventListener('click', function() {
+    menu_toggle_btn.addEventListener('click', function() {
         if (nav.style.display === '') {
             nav.style.display = 'flex';
         } else if (nav.style.display == 'flex') {
